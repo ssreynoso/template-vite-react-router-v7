@@ -13,6 +13,7 @@ export default tseslint.config(
             'dist/',
             'node_modules/',
             '.next/',
+            'build',
             '.react-router/',
             'src/entry.client.tsx',
             'src/entry.server.tsx',
@@ -60,7 +61,9 @@ export default tseslint.config(
             ],
             'import/no-duplicates': 'error',
             'import/newline-after-import': ['error', { count: 1 }],
-            'react-hooks/exhaustive-deps': 'off'
+            'react-hooks/exhaustive-deps': 'off',
+            'react-refresh/only-export-components': 'off',
+            'no-empty-pattern': 'warn'
         }
     }
 )
