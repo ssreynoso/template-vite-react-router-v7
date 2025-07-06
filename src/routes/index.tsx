@@ -1,10 +1,11 @@
 import type { Route } from './+types/index'
 
 import { App } from '@/app'
+import { env } from '@/lib/env'
 import { Providers } from '@/providers'
 
 export function meta({}: Route.MetaArgs) {
-    return [{ title: 'New React Router App' }, { name: 'description', content: 'Welcome to React Router!' }]
+    return [{ title: env.VITE_APP_NAME }, { name: 'description', content: 'Welcome to React Router!' }]
 }
 
 export function loader() {

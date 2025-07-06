@@ -9,6 +9,10 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - `pnpm start` - Start production server
 - `pnpm typecheck` - Run TypeScript type checking (`react-router typegen && tsc`)
 - `pnpm lint` - Run ESLint
+- `pnpm test` - Run tests with Vitest
+- `pnpm test:watch` - Run tests in watch mode
+- `pnpm test:ui` - Run tests with UI interface
+- `pnpm test:coverage` - Run tests with coverage report
 
 ## Project Architecture
 
@@ -22,6 +26,7 @@ This is a React Router v7 application with full-stack capabilities and server-si
 - **Radix UI**: Headless UI components
 - **Zustand**: State management
 - **Zod**: Schema validation
+- **Vitest**: Testing framework with React Testing Library
 - **pnpm**: Package manager
 
 ### Project Structure
@@ -35,6 +40,10 @@ This is a React Router v7 application with full-stack capabilities and server-si
 - `src/providers/` - Context providers
 - `src/schemas/` - Zod schemas and types
 - `src/styles/` - Global CSS files
+- `test/` - Test files organized by feature
+  - `config/` - Test configuration and utilities
+  - `components/` - Component tests
+  - `lib/` - Library/utility tests
 
 ### Key Patterns
 
