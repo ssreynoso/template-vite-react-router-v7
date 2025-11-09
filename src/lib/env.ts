@@ -1,19 +1,18 @@
 import { z } from 'zod'
 
-// Define environment schema
-const envSchema = z.object({
-    NODE_ENV: z.enum(['development', 'production', 'test']).default('development'),
-    VITE_APP_NAME: z.string().default('My React Router App'),
-    VITE_APP_URL: z.string().url().default('http://localhost:3000'),
-    VITE_APP_DEBUG: z
-        .string()
-        .transform(val => val === 'true')
-        .default('false')
+import { publicEnvSchema } from './public-env'
 
-    // Add your environment variables here
-    // VITE_API_BASE_URL: z.string().url().optional(),
-    // VITE_API_KEY: z.string().optional(),
-})
+// Define environment schema
+
+const envSchema = z
+    .object({
+        NODE_ENV: z.enum(['development', 'production', 'test']).default('development')
+
+        // Add your environment variables here
+        // VITE_API_BASE_URL: z.string().url().optional(),
+        // VITE_API_KEY: z.string().optional(),
+    })
+    .merge(publicEnvSchema)
 
 // Parse and validate environment variables
 function parseEnv() {

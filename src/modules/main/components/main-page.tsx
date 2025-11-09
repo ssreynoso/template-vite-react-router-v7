@@ -9,7 +9,7 @@ interface Props {
     message: Promise<string>
 }
 
-export const App = ({ message }: Props) => {
+export const MainPage = ({ message }: Props) => {
     const openInfoModal = useInfoModal(state => state.onOpen)
 
     const handleModal = () => {

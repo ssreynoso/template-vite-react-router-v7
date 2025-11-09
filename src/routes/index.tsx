@@ -1,11 +1,10 @@
 import type { Route } from './+types/index'
 
-import { App } from '@/app'
-import { env } from '@/lib/env'
-import { Providers } from '@/providers'
+import { publicEnv } from '@/lib/public-env'
+import { MainPage } from '@/modules/main/components/main-page'
 
 export function meta({}: Route.MetaArgs) {
-    return [{ title: env.VITE_APP_NAME }, { name: 'description', content: 'Welcome to React Router!' }]
+    return [{ title: publicEnv.VITE_APP_NAME }, { name: 'description', content: 'Welcome to React Router!' }]
 }
 
 export function loader() {
@@ -19,9 +18,5 @@ export function loader() {
 }
 
 export default function Index({ loaderData }: Route.ComponentProps) {
-    return (
-        <Providers>
-            <App message={loaderData.message} />
-        </Providers>
-    )
+    return <MainPage message={loaderData.message} />
 }
