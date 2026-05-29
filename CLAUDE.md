@@ -30,15 +30,18 @@ This is a React Router v7 application with full-stack capabilities and server-si
 - **pnpm**: Package manager
 
 ### Project Structure
-- `src/app/` - Main application entry point
-- `src/routes/` - Route components (file-based routing)
-- `src/components/` - Reusable UI components
-  - `ui/` - Base UI components (buttons, inputs, etc.)
-  - `modals/` - Modal components with global state
-- `src/hooks/` - Custom React hooks
-- `src/lib/` - Utility functions and helpers
-- `src/providers/` - Context providers
-- `src/schemas/` - Zod schemas and types
+- `src/modules/` - Feature/entity modules, each self-contained (see "Module Structure")
+- `src/routes/` - Thin route entry points referenced by `routes.ts` (framework layer)
+- `src/components/` - Shared/generic UI components
+  - `ui/` - Base UI components (buttons, inputs, table, select, textarea, etc.)
+  - `modals/` - Generic modal components with global state
+- `src/hooks/` - Generic shared hooks (e.g. `use-is-mounted`) + `modals/` (modal state)
+- `src/lib/` - Shared utilities and infrastructure
+  - `api/` - `apiFetch` HTTP client, `ApiError`, error helpers
+  - `auth/` - `token-storage` (JWT in localStorage, SSR-safe)
+  - `query-client.ts` / `query-keys.ts` - TanStack Query setup
+- `src/providers/` - Context providers (TanStack Query, modals, toasts)
+- `src/schemas/` - Shared Zod schemas and domain types
 - `src/styles/` - Global CSS files
 - `test/` - Test files organized by feature
   - `config/` - Test configuration and utilities
@@ -50,6 +53,25 @@ This is a React Router v7 application with full-stack capabilities and server-si
 **Path Aliases:**
 - `@/*` maps to `src/*`
 - `~/*` maps to `src/app/*`
+
+**Module Structure:**
+- Each module under `src/modules/<module>/` is self-contained with its own
+  `components/`, `hooks/`, `schemas/` and `services/`.
+- Only generic/shared code, or code that doesn't belong to a particular module,
+  lives directly under `src/` (`components/ui`, `components/modals` + `hooks/modals`,
+  generic hooks, `lib/*`, shared `schemas/`, `providers/`, `routes/`, `styles/`, `types/`).
+  There is no `shared` folder — `src/` is the shared layer.
+- `src/routes/` stays as a thin framework layer (wrappers referenced by `routes.ts`).
+- Domain types shared across modules go in `src/schemas/` to avoid coupling modules
+  to each other.
+
+**Data Fetching:**
+- Raw HTTP functions live in each module's `services/` and use `apiFetch` from
+  `@/lib/api/client` (base URL from `VITE_API_URL`, Bearer token, error parsing).
+- Wrap them in custom hooks with TanStack Query, e.g.
+  `useThings → useQuery({ queryFn: () => getThings(...) })`, returning a trimmed shape
+  like `{ isLoading, things, isError }`. Register query keys in `@/lib/query-keys`.
+- Forms use `react-hook-form` + `zod` (`@hookform/resolvers/zod`).
 
 **Modal System:**
 - Global modal state managed through providers

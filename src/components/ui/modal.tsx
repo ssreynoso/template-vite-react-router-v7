@@ -68,7 +68,9 @@ export const Modal = (props: ModalProps) => {
                         {headerContent}
                     </DialogHeader>
                 )}
-                <div className='flex-1 overflow-y-auto'>{children}</div>
+                {/* -m-2/p-2: el overflow-y-auto recorta el desborde en ambos ejes; el padding
+                    extra evita que se corte el ring de focus de inputs y botones en los bordes. */}
+                <div className='-m-2 flex-1 overflow-y-auto p-2'>{children}</div>
             </DialogContent>
         </Dialog>
     )

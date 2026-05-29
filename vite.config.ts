@@ -4,8 +4,7 @@ import { defineConfig } from 'vite'
 import path from 'path'
 import tsconfigPaths from 'vite-tsconfig-paths'
 
-export default defineConfig(({ command }) => ({
-    ssr: true,
+export default defineConfig(() => ({
     plugins: [tailwindcss(), reactRouter(), tsconfigPaths()],
     server: { port: 3000 },
     resolve: {

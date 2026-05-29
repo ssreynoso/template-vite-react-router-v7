@@ -21,6 +21,7 @@ function parseEnv() {
             NODE_ENV: process.env.NODE_ENV,
             VITE_APP_NAME: process.env.VITE_APP_NAME,
             VITE_APP_URL: process.env.VITE_APP_URL,
+            VITE_API_URL: process.env.VITE_API_URL,
             VITE_APP_DEBUG: process.env.VITE_APP_DEBUG
 
             // Add your environment variables here
