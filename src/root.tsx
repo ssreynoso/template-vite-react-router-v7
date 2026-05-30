@@ -6,6 +6,8 @@ import './styles/animations.css'
 import './styles/scroll-bar.css'
 import { Providers } from './providers'
 
+import { themeInitScript } from '@/lib/theme'
+
 export const links: Route.LinksFunction = () => [
     { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
     {
@@ -27,6 +29,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
                 <meta name='viewport' content='width=device-width, initial-scale=1' />
                 <Meta />
                 <Links />
+                {/* Aplica el tema antes del paint para evitar el flash (FOUC). */}
+                <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
             </head>
             <body>
                 {children}

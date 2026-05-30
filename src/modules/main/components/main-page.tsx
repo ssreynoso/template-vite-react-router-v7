@@ -2,6 +2,7 @@ import { PropsWithChildren, Suspense } from 'react'
 import { Await } from 'react-router'
 import { toast } from 'sonner'
 
+import { ThemeToggle } from '@/components/theme-toggle'
 import { Button } from '@/components/ui/button'
 import { useInfoModal } from '@/hooks/modals/use-info-modal'
 
@@ -23,7 +24,10 @@ export const MainPage = ({ message }: Props) => {
     }
 
     return (
-        <div className='flex h-screen w-full flex-col items-center justify-center gap-10 bg-gray-700'>
+        <div className='flex h-screen w-full flex-col items-center justify-center gap-10 bg-background'>
+            <div className='absolute top-4 right-4'>
+                <ThemeToggle />
+            </div>
             <Suspense fallback={<Title>Loading...</Title>}>
                 <Await resolve={message}>{m => <Title>{m}</Title>}</Await>
             </Suspense>
@@ -40,5 +44,5 @@ export const MainPage = ({ message }: Props) => {
 }
 
 const Title = ({ children }: PropsWithChildren) => {
-    return <h1 className='text-xl font-bold text-white'>{children}</h1>
+    return <h1 className='text-xl font-bold text-foreground'>{children}</h1>
 }

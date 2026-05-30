@@ -5,7 +5,7 @@
 ### Error Handling & Boundaries
 
 - [ ] Implement custom ErrorBoundary component (choose between react-error-boundary package or class component)
-- [ ] Add async error handling patterns
+- [x] Add async error handling patterns (apiFetch + ApiError + query-client retry)
 - [ ] Implement error logging service integration
 - [ ] Add error recovery mechanisms
 
@@ -20,7 +20,7 @@
 
 ### Performance
 
-- [ ] Implement lazy loading for routes
+- [x] Implement lazy loading for routes (handled by React Router framework code-splitting)
 - [ ] Add image optimization setup
 - [ ] Configure bundle analysis
 - [ ] Add React.memo patterns where needed
@@ -28,12 +28,12 @@
 ### Development Experience
 
 - [ ] Create component generator scripts
-- [ ] Add pre-commit hooks with husky
+- [ ] Add pre-commit hooks with husky _(descartado: los commits se hacen con AI)_
 - [ ] Implement conventional commits
 
 ### Documentation
 
-- [ ] Expand README with detailed setup instructions
+- [x] Expand README with detailed setup instructions
 - [ ] Add contributing guidelines
 - [ ] Create component documentation with Storybook
 - [ ] Add API documentation patterns
@@ -68,8 +68,8 @@
 - [ ] Add PWA capabilities
 - [ ] Implement offline support
 - [ ] Add push notifications
-- [ ] Create dark/light theme system
-- [ ] Add skeleton loading states
+- [x] Create dark/light theme system
+- [x] Add skeleton loading states (Skeleton component)
 
 ### DevOps
 
@@ -80,5 +80,5 @@
 
 ---
 
-_Last updated: 2025-01-06_
+_Last updated: 2026-05-29_
 

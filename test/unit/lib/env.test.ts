@@ -36,8 +36,10 @@ describe('Environment Variables', () => {
     it('should throw error for invalid URL', async () => {
         vi.stubEnv('VITE_APP_URL', 'not-a-url')
 
+        // public-env.ts se parsea al importarse (lo importa env.ts), así que su
+        // validación falla primero con este mensaje.
         await expect(async () => {
             await import('@/lib/env')
-        }).rejects.toThrow('Invalid environment variables')
+        }).rejects.toThrow('Invalid public environment variables')
     })
 })
